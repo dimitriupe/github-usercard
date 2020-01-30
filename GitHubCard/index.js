@@ -3,6 +3,8 @@
            https://api.github.com/users/<your name>
 */
 
+axios.get('https://api.github.com/users/dimitriupe')
+
 /* Step 2: Inspect and study the data coming back, this is YOUR 
    github info! You will need to understand the structure of this 
    data in order to use it to build your component function 
@@ -53,3 +55,47 @@ const followersArray = [];
   luishrd
   bigknell
 */
+
+function cardCreator(array) {
+  const card = document.createElement('div');
+  const image = document.createElement('img');
+  const cardInfo = document.createElement('div');
+  const name = document.createElement('h3');
+  const username = document.createElement('p');
+  const location = document.createElement('p');
+  const profile = document.createElement('p');
+  const link = document.createElement('a');
+  const followers = document.createElement('p');
+  const following = document.createElement('p');
+  const bio = document.createElement('p');
+
+  card.appendChild(image);
+  card.appendChild(cardInfo);
+
+  cardInfo.appendChild(name);
+  cardInfo.appendChild(username);
+  cardInfo.appendChild(location);
+  cardInfo.appendChild(profile);
+
+  profile.appendChild(link);
+
+  cardInfo.appendChild(followers);
+  cardInfo.appendChild(following);
+  cardInfo.appendChild(bio);
+
+  card.classList.add('card');
+  cardInfo.classList.add('card-info');
+  name.classList.add('name');
+  username.classList.add('username');
+
+  location.textContent = 'Location: ';
+  profile.textContent = 'Profile: ';
+  followers.textContent = 'Followers: ';
+  following.textContent = 'Following: ';
+  bio.textContent = 'Bio: ';
+
+  return card;
+}
+
+let cards = document.querySelector('.cards');
+cards.appendChild(cardCreator(array));
