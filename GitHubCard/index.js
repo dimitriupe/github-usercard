@@ -56,7 +56,7 @@ const followersArray = [];
   bigknell
 */
 
-function cardCreator(array) {
+function cardCreator(info) {
   const card = document.createElement('div');
   const image = document.createElement('img');
   const cardInfo = document.createElement('div');
@@ -88,14 +88,21 @@ function cardCreator(array) {
   name.classList.add('name');
   username.classList.add('username');
 
-  location.textContent = 'Location: ';
-  profile.textContent = 'Profile: ';
-  followers.textContent = 'Followers: ';
-  following.textContent = 'Following: ';
-  bio.textContent = 'Bio: ';
+  image.src = info.avatar_url;
+  name.textContent = info.name;
+  username.textContent = info.login;
+  location.textContent = `Location: ${info.location}`;
+  profile.textContent = `Profile: ` + (link.textContent = info.html_url);
+  followers.textContent = `Followers: ${info.followers}`;
+  following.textContent = `Following: ${info.following}`;
+  bio.textContent = `Bio: ${info.bio}`;
 
   return card;
 }
 
 let cards = document.querySelector('.cards');
-cards.appendChild(cardCreator(array));
+
+axios.get("https://api.github.com/users/dimitriupe").then(response => {
+    console.log(response.data);
+    cards.appendChild(cardCreator(response.data));
+  });
